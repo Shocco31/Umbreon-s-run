@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+  }
+
+html {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(images/background.png);
+    background-color: #1b1936;
+}
+
+h1 {
+    font-family: 'Secular One', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-align: left;
+    font-size: 26px;
+    margin: 5%;
+}
+
+.flex-5130 {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+}
+
+.flex-5130 .col-1 {
+    width: 70%;
+    height: 100%;
+
+    font-size: 2em;
+}
+
+.flex-5130 .col-2 {
+    width: 30%;
+    height: 100%;
+
+
+    font-size: 2em;
+}
