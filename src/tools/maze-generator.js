@@ -69,3 +69,14 @@ MazeGenerator.prototype.toString = function() {
     }
     return str;
 };
+
+// EXAMPLE OF USAGE :
+
+// const STARTING_POINT = "2";
+// const ENDING_POINT = "3";
+// var generator = new MazeGenerator(width, height);
+// generator.generate();
+// var maze = generator.toString();
+// maze = maze.replace(/(\r\n|\n|\r)/gm, "");
+// maze = maze.replaceAt(width + 1, STARTING_POINT);
+// maze = maze.replaceAt((height - 1) * (width - 1) + (width - 1), ENDING_POINT);

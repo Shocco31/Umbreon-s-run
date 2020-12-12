@@ -54,3 +54,7 @@ p {
 
     font-size: 2em;
 }
+
+.sprite {
+    position: absolute;
+}

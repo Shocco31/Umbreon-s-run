@@ -1,3 +1,14 @@
-let maze = new MazeGenerator(31, 31);
-maze.generate();
-console.log(maze.toString());
+function getMaze() {
+    var maze = [
+        [0,2,0,0,0,0,0],
+        [0,1,1,1,1,1,0],
+        [0,1,0,1,0,0,0],
+        [0,1,0,1,1,1,0],
+        [0,1,0,0,0,1,0],
+        [0,1,1,1,0,1,0],
+        [0,0,0,0,0,3,0]
+    ];
+    return maze;
+}
+
+console.log(getMaze());
