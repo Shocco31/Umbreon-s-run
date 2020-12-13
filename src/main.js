@@ -55,13 +55,26 @@ function appuiTouche(event) {
 }
 }
 
-//  animation 1
-gsap.to("#james_path", {
-  duration: 2,
+//  animation James
+gsap.to("#james", {
+  duration: 7,
   motionPath: {
-    path: "#james",
-    align: "#james"
+    path: "#james_path",
+    align: "#james_path"
   },
   ease: Linear.easeNone,
-  repeat: -1
+  repeat: -1,
+  yoyo: true,
+});
+
+//  animation James
+gsap.to("#jessie", {
+  duration: 10,
+  motionPath: {
+    path: "#jessie_path",
+    align: "#jessie_path"
+  },
+  ease: Linear.easeNone,
+  repeat: -1,
+  yoyo: true,
 });
