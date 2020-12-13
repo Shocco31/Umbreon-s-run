@@ -19,3 +19,26 @@ window.onresize = function() {
         }
     }
 };
+function appuiTouche(event) {
+    var map = document.getElementById("map");
+    if (event.keyCode == 90 || event.keyCode == 38) {
+        gsap.to("#umbreon", {
+            y:"-=" + (map.offsetWidth / width)
+        })
+    }
+    if (event.keyCode == 83) {
+        gsap.to("#umbreon", {
+            y:"+=" + (map.offsetWidth / width)
+        })
+    }
+    if (event.keyCode == 81) {
+        gsap.to("#umbreon", {
+            x:"-=" + (map.offsetHeight / height)
+        })
+    }
+    if (event.keyCode == 68) {
+        gsap.to("#umbreon", {
+            x:"+=" + (map.offsetHeight / height)
+        })
+    }
+}
