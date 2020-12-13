@@ -5,6 +5,8 @@ var umbreonCoords = {
     y: 0
 };
 
+var operationInProgress = null;
+
 function MapResize() {
     var map = document.getElementById("map");
     var mapWidth = map.offsetWidth;
@@ -34,29 +36,53 @@ function GameEntitiesResize() {
     }
 }
 
+var tl = new TimelineMax();
+
 function appuiTouche(event) {
     var map = document.getElementById("map");
-    if (event.keyCode == 90 || event.keyCode == 38) {
-        gsap.to("#umbreon", {
-            y:"-=" + (map.offsetWidth / width)
-        })
-    }
-    if (event.keyCode == 83) {
-        gsap.to("#umbreon", {
-            y:"+=" + (map.offsetWidth / width)
-        })
-    }
-    if (event.keyCode == 81) {
-        gsap.to("#umbreon", {
-            x:"-=" + (map.offsetHeight / height)
-        })
-    }
-    if (event.keyCode == 68) {
-        gsap.to("#umbreon", {
-            x:"+=" + (map.offsetHeight / height)
-        })
+
+    if (!tl.isActive()) {
+        if (event.keyCode == 90 || event.keyCode == 38) {
+            tl.to("#umbreon", {
+                duration: 0.2,
+                y:"-=" + (map.offsetWidth / width)
+            })
+            umbreonCoords.y++;
+        }
+        if (event.keyCode == 83 || event.keyCode == 40) {
+            tl.to("#umbreon", {
+                duration: 0.2,
+                y:"+=" + (map.offsetWidth / width)
+            })
+            umbreonCoords.y--;
+        }
+        if (event.keyCode == 81 || event.keyCode == 37) {
+            tl.to("#umbreon", {
+                duration: 0.2,
+                x:"-=" + (map.offsetWidth / width)
+            })
+            umbreonCoords.x--;
+        }
+        if (event.keyCode == 68 || event.keyCode == 39) {
+            tl.to("#umbreon", {
+                duration: 0.2,
+                x:"+=" + (map.offsetWidth / width)
+            })
+            umbreonCoords.x++;
+        }
     }
 }
+
+//  animation 1
+gsap.to("#james_path", {
+  duration: 2,
+  motionPath: {
+    path: "#james",
+    align: "#james"
+  },
+  ease: Linear.easeNone,
+  repeat: -1
+});
 
 window.onresize = function(event) {
     this.MapResize();
