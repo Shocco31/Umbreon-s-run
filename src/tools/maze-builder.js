@@ -142,16 +142,12 @@ function BuildMaze(m) {
     }
 }
 
+function InitEntitiesPositon() {
+    var umbreon = document.getElementById("umbreon");
+    var map = document.getElementById("map");
+
+    umbreon.style.left = ((map.offsetWidth / width) + (map.offsetWidth / width / 10)) + 'px';
+}
+
 BuildMaze(maze);
-// test purposes
-// width = 40;
-// height = 25;
-// let i = 0;
-// while (i < width) {
-//     let j = 0;
-//     while (j < height) {
-//         ShowMazeTile(i, j, "FLOOR");
-//         ++j;
-//     } 
-//     ++i;
-// }
+InitEntitiesPositon();
