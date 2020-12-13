@@ -43,18 +43,21 @@ p {
 .flex-5130 .col-1 {
     width: 70%;
     height: 100%;
-
-    font-size: 2em;
+    font-size: 0;
 }
 
 .flex-5130 .col-2 {
     width: 30%;
     height: 100%;
-
-
     font-size: 2em;
 }
 
 .sprite {
-    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#gamefield {
+    border-right: 1px solid black;
+    max-height: 100%;
 }
