@@ -42,7 +42,8 @@ function ShowMazeTile(x, y, type) {
         newRow.setAttribute('id', 'row' + y);
         newRow.setAttribute('width', '100%');
         newRow.style.maxHeight = tileMaxSize;
-        document.getElementById("gamefield").appendChild(newRow);
+        newRow.style.height = (100 / height) + "%";
+        document.getElementById("map").appendChild(newRow);
     }
     var newImage = document.createElement("img");
     newImage.setAttribute('src', '../assets/images/' + type + '.png');
@@ -142,7 +143,6 @@ function BuildMaze(m) {
 }
 
 BuildMaze(maze);
-
 // test purposes
 // width = 40;
 // height = 25;
