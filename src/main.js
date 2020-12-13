@@ -1,6 +1,11 @@
 const horizScrollBarHeight = 18;
 
-window.onresize = function() {
+var umbreonCoords = {
+    x: 1,
+    y: 0
+};
+
+function MapResize() {
     var map = document.getElementById("map");
     var mapWidth = map.offsetWidth;
     var mapHeight = map.offsetHeight;
@@ -18,7 +23,17 @@ window.onresize = function() {
             map.style.width = '100%';
         }
     }
-};
+}
+
+function GameEntitiesResize() {
+    var map = document.getElementById("map");
+    var entities = document.getElementsByClassName("game-entity");
+    for (let entity of entities) {
+        entity.style.left = umbreonCoords.x * (map.offsetWidth / width);
+        entity.style.top = umbreonCoords.y * (map.offsetHeight / height);
+    }
+}
+
 function appuiTouche(event) {
     var map = document.getElementById("map");
     if (event.keyCode == 90 || event.keyCode == 38) {
@@ -42,3 +57,8 @@ function appuiTouche(event) {
         })
     }
 }
+
+window.onresize = function(event) {
+    this.MapResize();
+    this.GameEntitiesResize();
+};
