@@ -4,7 +4,7 @@ var umbreonCoords = {
 };
 
 var collision = new Audio("../assets/sounds/collision.wav");
-collision.volume = 0.01;
+collision.volume = 0.2;
 
 function ChangeUmbreonSprite(sprite) {
     document.getElementById("umbreon").setAttribute('src', "../assets/images/umbreon/" + sprite + ".png")
