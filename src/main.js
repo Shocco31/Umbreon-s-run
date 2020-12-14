@@ -1,3 +1,4 @@
+// CONSTANTES
 const keyCodes = {
     "SPACE": 32,
     "ARROW_UP": 38,
@@ -10,18 +11,21 @@ const keyCodes = {
     "D": 68,
     "M": 77
 };
-
+// VARIABLES
+// Start
 var gameStarted = false;
 
 var umbreon_tl = null;
 var james_tl = null;
 var jessie_tl = null;
 
+
+// Sounds
 var music = new Audio("../assets/sounds/main-music.mp3");
-music.volume = 0.01;
+music.volume = 0.1;
 music.loop = true;
 
-
+// RESPONSIVE
 function MapResize() {
     const horizScrollBarHeight = 18;
     var map = document.getElementById("map");
@@ -69,6 +73,7 @@ function GameEntitiesPositioning() {
     }
 }
 
+// START GAME
 function OnKeyPress(event) {
     if (Object.values(keyCodes).includes(event.keyCode)) {
         event.preventDefault();
@@ -140,3 +145,39 @@ window.onresize = function(event) {
     this.MapResize();
     this.GameEntitiesPositioning();
 };
+
+// COLLISIONS
+function checkCollision(div1, div2) {
+    // la sensibilité : à ajuster si besoin
+    let threshold = 50;
+    let rect1 = div1.getBoundingClientRect();
+    let rect2 = div2.getBoundingClientRect();
+    return !(
+      rect1.right < rect2.left + threshold ||
+      rect1.left > rect2.right - threshold ||
+      rect1.bottom < rect2.top + threshold ||
+      rect1.top > rect2.bottom - threshold
+    );
+  }
+
+function checkEnnemies() {
+	// on récupère tous les ennemis : 
+	let all_ennemies = document.querySelectorAll(".ennemy")
+	// on regarde s'il y a une collision
+	all_ennemies.forEach(function(element) {
+	    if (checkCollision(player, element)) {
+	        gameOver()
+	    } 
+	})
+}
+
+// on lance checkEnnemies toutes les 500ms
+setInterval(checkEnnemies, 500)
+
+// GAMEOVER
+function gameOver() {
+    // que faire si on a perdu ?
+    console.log("game over")
+    alert("Vous avez perdu !");
+}
+  
