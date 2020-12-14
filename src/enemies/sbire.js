@@ -61,7 +61,6 @@ function SbireGoDown(tag, sbire_tl, sbire_coords) {
 function StartSbireAnimation(sbire_number, sbire_tl, sbire_coords) {
     var path = "RDLU";
     var tag = "#sbire" + sbire_number;
-    console.log(sbire_tl)
     for (let direction of path) {
         switch (direction) {
             case 'L':

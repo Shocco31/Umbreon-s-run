@@ -51,7 +51,7 @@ function UmbreonGoDown() {
 
 function UmbreonGoLeft() {
     var map = document.getElementById("map");
-    console.log(map.offsetWidth)
+
     ChangeUmbreonSprite("umbl1")
     if (maze[umbreon_coords.y][umbreon_coords.x - 1] == WALL) {
         collision.play();

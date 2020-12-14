@@ -11,9 +11,10 @@ const keyCodes = {
     "D": 68,
     "M": 77
 };
+
 // VARIABLES
-// Start
 var gameStarted = false;
+var checkInterval = null;
 
 var umbreon_tl = null;
 var james_tl = null;
@@ -40,11 +41,10 @@ var sbire1_coords = {
     y: 5
 };
 
-
-// Sounds
-var music = new Audio("../assets/sounds/main-music.mp3");
-music.volume = 0.1;
-music.loop = true;
+window.onresize = function() {
+    this.MapResize();
+    this.GameEntitiesPositioning();
+};
 
 // RESPONSIVE
 function MapResize() {
@@ -97,7 +97,7 @@ function GameEntitiesPositioning() {
         if (sbire1_tl) {
             sbire1_tl.kill();
             sbire1_tl = new TimelineMax();
-            StartSbireAnimation(sbire1_tl, sbire1_coords);
+            StartSbireAnimation(1, sbire1_tl, sbire1_coords);
         }
     }
 }
@@ -114,7 +114,7 @@ function OnKeyPress(event) {
     }
     if (gameStarted == true) {
         if (event.keyCode == keyCodes["M"]) {
-            music.muted = !music.muted;
+            MuteMusic();
         }
         if (!umbreon_tl.isActive()) {
             if (event.keyCode == keyCodes["Z"] || event.keyCode == keyCodes["ARROW_UP"]) {
@@ -129,6 +129,9 @@ function OnKeyPress(event) {
             if (event.keyCode == keyCodes["D"] || event.keyCode == keyCodes["ARROW_RIGHT"]) {
                 UmbreonGoRight();
             }
+            if (maze[umbreon_coords.y][umbreon_coords.x] == END) {
+                victory();
+            }
         }
     }
 }
@@ -142,10 +145,12 @@ function StartGame() {
     jessie_tl = new TimelineMax();
     sbire1_tl = new TimelineMax();
 
-    //music.play();
+    PlayMainMusic();
+    
     StartJamesAnimation();
     StartJessieAnimation();
     StartSbireAnimation(1, sbire1_tl, sbire1_coords);
+    checkInterval = setInterval(checkEnnemies, 250)
 
     //  animation James
 //     gsap.to("#james", {
@@ -172,43 +177,51 @@ function StartGame() {
 //     });
 }
 
-window.onresize = function(event) {
-    this.MapResize();
-    this.GameEntitiesPositioning();
-};
+function EndGame() {
+    //james_tl.kill();
+    //jessie_tl.kill();
+    sbire1_tl.kill();
+    clearInterval(checkInterval);
+    gameStarted = false;
+}
 
-// // COLLISIONS
-// function checkCollision(div1, div2) {
-//     // la sensibilité : à ajuster si besoin
-//     let threshold = 50;
-//     let rect1 = div1.getBoundingClientRect();
-//     let rect2 = div2.getBoundingClientRect();
-//     return !(
-//       rect1.right < rect2.left + threshold ||
-//       rect1.left > rect2.right - threshold ||
-//       rect1.bottom < rect2.top + threshold ||
-//       rect1.top > rect2.bottom - threshold
-//     );
-//   }
+// GAMEOVER
+function gameOver() {
+    EndGame();
+    PlayDefeatMusic();
+    console.log("game over")
+}
 
-// function checkEnnemies() {
-// 	// on récupère tous les ennemis : 
-// 	let all_ennemies = document.querySelectorAll(".ennemy")
-// 	// on regarde s'il y a une collision
-// 	all_ennemies.forEach(function(element) {
-// 	    if (checkCollision(player, element)) {
-// 	        gameOver()
-// 	    } 
-// 	})
-// }
+// VICTORY
+function victory() {
+    EndGame();
+    PlayWinMusic();
+    console.log("victory")
+}
 
-// // on lance checkEnnemies toutes les 500ms
-// setInterval(checkEnnemies, 500)
+// COLLISIONS
+function checkCollision(div1, div2) {
+    // la sensibilité : à ajuster si besoin
+    let threshold = -5;
+    let rect1 = div1.getBoundingClientRect();
+    let rect2 = div2.getBoundingClientRect();
+    return !(
+      rect1.right < rect2.left + threshold ||
+      rect1.left > rect2.right - threshold ||
+      rect1.bottom < rect2.top + threshold ||
+      rect1.top > rect2.bottom - threshold
+    );
+  }
 
-// // GAMEOVER
-// function gameOver() {
-//     // que faire si on a perdu ?
-//     console.log("game over")
-//     alert("Vous avez perdu !");
-// }
+function checkEnnemies() {
+	// on récupère tous les ennemis : 
+    let all_ennemies = document.querySelectorAll(".ennemy");
+    let player = document.querySelector(".player");
+	// on regarde s'il y a une collision
+	all_ennemies.forEach(function(element) {
+	    if (checkCollision(player, element)) {
+	        gameOver()
+	    } 
+	})
+}
   
