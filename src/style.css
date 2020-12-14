@@ -106,6 +106,12 @@ button{
     visibility: hidden;
 }
 
+#sbire1 {
+    width: 1.1%;
+    position: absolute;
+    visibility: hidden;
+}
+
 /* 
 .path_jessie {
     position: absolute;    
@@ -115,11 +121,7 @@ button{
 } */
 
 
-#sbire {
-    width: 1.7%;
-    position: absolute;
-    visibility: hidden;
-}
+
 
 
 /* MODAL */

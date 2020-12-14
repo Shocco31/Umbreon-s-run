@@ -1,62 +1,57 @@
-var jessieCoords = {
-    x: 17,
-    y: 6
-};
-
 function jessieGoLeft() {
     var map = document.getElementById("map");
     jessie_tl.set("#jessie", { attr: { src: "../assets/images/jessie/jesl1.png" } })
     .to("#jessie", {
-        x: (jessieCoords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 2)
+        x: (jessie_coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 2)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesl3.png" } })
     .to("#jessie", {
-        x: (jessieCoords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
+        x: (jessie_coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesl2.png" } })
-    jessieCoords.x--;
+    jessie_coords.x--;
 }
 
 function jessieGoRight() {
     var map = document.getElementById("map");
     jessie_tl.set("#jessie", { attr: { src: "../assets/images/jessie/jesr1.png" } })
     .to("#jessie", {
-        x: (jessieCoords.x + 1) * (map.offsetWidth / width) - (map.offsetWidth / width / 2)
+        x: (jessie_coords.x + 1) * (map.offsetWidth / width) - (map.offsetWidth / width / 2)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesr3.png" } })
     .to("#jessie", {
-        x: (jessieCoords.x + 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
+        x: (jessie_coords.x + 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesr2.png" } })
-    jessieCoords.x++;
+    jessie_coords.x++;
 }
 
 function jessieGoUp() {
     var map = document.getElementById("map");
     jessie_tl.set("#jessie", { attr: { src: "../assets/images/jessie/jesu1.png" } })
     .to("#jessie", {
-        y: (jessieCoords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 2)
+        y: (jessie_coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 2)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesu3.png" } })
     .to("#jessie", {
-        y: (jessieCoords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
+        y: (jessie_coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesu2.png" } })
-    jessieCoords.y--;
+    jessie_coords.y--;
 }
 
 function jessieGoDown() {
     var map = document.getElementById("map");
     jessie_tl.set("#jessie", { attr: { src: "../assets/images/jessie/jesd1.png" } })
     .to("#jessie", {
-        y: (jessieCoords.y + 1) * (map.offsetHeight / height) - (map.offsetHeight / height / 2)
+        y: (jessie_coords.y + 1) * (map.offsetHeight / height) - (map.offsetHeight / height / 2)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesd3.png" } })
     .to("#jessie", {
-        y: (jessieCoords.y + 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
+        y: (jessie_coords.y + 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
     })
     .set("#jessie", { attr: { src: "../assets/images/jessie/jesd2.png" } })
-    jessieCoords.y++;
+    jessie_coords.y++;
 }
 
 function StartJessieAnimation() {

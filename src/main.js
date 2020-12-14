@@ -18,6 +18,27 @@ var gameStarted = false;
 var umbreon_tl = null;
 var james_tl = null;
 var jessie_tl = null;
+var sbire1_tl = null;
+
+var umbreon_coords = {
+    x: 1,
+    y: 0
+};
+
+var james_coords = {
+    x: 10,
+    y: 16
+};
+
+var jessie_coords = {
+    x: 17,
+    y: 6
+};
+
+var sbire1_coords = {
+    x: 1,
+    y: 5
+};
 
 
 // Sounds
@@ -53,12 +74,15 @@ function GameEntitiesPositioning() {
         var umbreon = document.getElementById("umbreon");
         var james = document.getElementById("james");
         var jessie = document.getElementById("jessie");
+        var sbire1 = document.getElementById("sbire1");
         umbreon.style.visibility = 'visible';
         james.style.visibility = 'visible';
         jessie.style.visibility = 'visible';
-        umbreon.style.transform = 'translate(' + ((umbreonCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (umbreonCoords.y * (map.offsetHeight / height)) + 'px)';
-        james.style.transform = 'translate(' + ((jamesCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (jamesCoords.y * (map.offsetHeight / height)) + 'px)';
-        jessie.style.transform = 'translate(' + ((jessieCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (jessieCoords.y * (map.offsetHeight / height)) + 'px)';
+        sbire1.style.visibility = 'visible';
+        umbreon.style.transform = 'translate(' + ((umbreon_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (umbreon_coords.y * (map.offsetHeight / height)) + 'px)';
+        james.style.transform = 'translate(' + ((james_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (james_coords.y * (map.offsetHeight / height)) + 'px)';
+        jessie.style.transform = 'translate(' + ((jessie_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (jessie_coords.y * (map.offsetHeight / height)) + 'px)';
+        sbire1.style.transform = 'translate(' + ((sbire1_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (sbire1_coords.y * (map.offsetHeight / height)) + 'px)';
 
         if (james_tl) {
             james_tl.kill();
@@ -69,6 +93,11 @@ function GameEntitiesPositioning() {
             jessie_tl.kill();
             jessie_tl = new TimelineMax();
             StartJessieAnimation();
+        }
+        if (sbire1_tl) {
+            sbire1_tl.kill();
+            sbire1_tl = new TimelineMax();
+            StartSbireAnimation(sbire1_tl, sbire1_coords);
         }
     }
 }
@@ -111,10 +140,12 @@ function StartGame() {
     umbreon_tl = new TimelineMax();
     james_tl = new TimelineMax();
     jessie_tl = new TimelineMax();
+    sbire1_tl = new TimelineMax();
 
     //music.play();
     StartJamesAnimation();
     StartJessieAnimation();
+    StartSbireAnimation(1, sbire1_tl, sbire1_coords);
 
     //  animation James
 //     gsap.to("#james", {
@@ -146,38 +177,38 @@ window.onresize = function(event) {
     this.GameEntitiesPositioning();
 };
 
-// COLLISIONS
-function checkCollision(div1, div2) {
-    // la sensibilité : à ajuster si besoin
-    let threshold = 50;
-    let rect1 = div1.getBoundingClientRect();
-    let rect2 = div2.getBoundingClientRect();
-    return !(
-      rect1.right < rect2.left + threshold ||
-      rect1.left > rect2.right - threshold ||
-      rect1.bottom < rect2.top + threshold ||
-      rect1.top > rect2.bottom - threshold
-    );
-  }
+// // COLLISIONS
+// function checkCollision(div1, div2) {
+//     // la sensibilité : à ajuster si besoin
+//     let threshold = 50;
+//     let rect1 = div1.getBoundingClientRect();
+//     let rect2 = div2.getBoundingClientRect();
+//     return !(
+//       rect1.right < rect2.left + threshold ||
+//       rect1.left > rect2.right - threshold ||
+//       rect1.bottom < rect2.top + threshold ||
+//       rect1.top > rect2.bottom - threshold
+//     );
+//   }
 
-function checkEnnemies() {
-	// on récupère tous les ennemis : 
-	let all_ennemies = document.querySelectorAll(".ennemy")
-	// on regarde s'il y a une collision
-	all_ennemies.forEach(function(element) {
-	    if (checkCollision(player, element)) {
-	        gameOver()
-	    } 
-	})
-}
+// function checkEnnemies() {
+// 	// on récupère tous les ennemis : 
+// 	let all_ennemies = document.querySelectorAll(".ennemy")
+// 	// on regarde s'il y a une collision
+// 	all_ennemies.forEach(function(element) {
+// 	    if (checkCollision(player, element)) {
+// 	        gameOver()
+// 	    } 
+// 	})
+// }
 
-// on lance checkEnnemies toutes les 500ms
-setInterval(checkEnnemies, 500)
+// // on lance checkEnnemies toutes les 500ms
+// setInterval(checkEnnemies, 500)
 
-// GAMEOVER
-function gameOver() {
-    // que faire si on a perdu ?
-    console.log("game over")
-    alert("Vous avez perdu !");
-}
+// // GAMEOVER
+// function gameOver() {
+//     // que faire si on a perdu ?
+//     console.log("game over")
+//     alert("Vous avez perdu !");
+// }
   
