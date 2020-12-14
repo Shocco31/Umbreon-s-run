@@ -8,19 +8,22 @@
 
   <title>Umbreon's Run</title>
 
+  <link rel="stylesheet" href="modal.html">
   <!-- lien vers le style CSS -->
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body onkeydown="OnKeyPress(event)" >
+<body onkeydown="OnKeyPress(event)">
 <!-- le contenu de votre site -->
 
 
 <section class='flex-5130'>
   <div id="gamefield" class="col-1">
     <div id="map">
-      <img id="umbreon" src="../assets/images/umbreon/umbd2.png" alt="Umbreon">
-      <img id="james" src="../assets/images/james/jamd2.png" alt="James">
-      <img id="jessie" src="../assets/images/jessie/jesd2.png" alt="Jessie">
+      <img id="umbreon" class="player" src="../assets/images/umbreon/umbd2.png" alt="Umbreon">
+      <img id="james" class="ennemy" src="../assets/images/james/jamd2.png" alt="James">
+      <img id="jessie" class="ennemy" src="../assets/images/jessie/jesd2.png" alt="Jessie">
+      <img id="sbire" class="ennemy" src="../assets/images/sbire/sbid1.png" alt="Sbire">
 
       <svg class="path_james" viewBox="0 0 339 194" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path id="james_path" d="M338.5 0V97H234.5V130.5H1V193H102"/>
@@ -37,8 +40,50 @@
     <h1>La fuite de Noctali</h1>
     <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve tes amis à l'exterieur. </br></br> A toi d'jouer ! </p>
     <button onclick="StartGame()">JOUER</button>
+    <button id="myBtn">Open Modal</button>
   </div>
 </section>
+
+<!-- Trigger/Open The Modal -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 
 <!-- les scripts JavaScript -->
 <!-- à la fin pour être sûr que le HTML a bien chargé -->
