@@ -142,11 +142,4 @@ function BuildMaze(m) {
     }
 }
 
-function InitEntitiesPositon() {
-    var umbreon = document.getElementById("umbreon");
-    var map = document.getElementById("map");
-    umbreon.style.transform = 'translate(' + ((map.offsetWidth / width) + (map.offsetWidth / width / 10)) + 'px, 0px)';
-}
-
 BuildMaze(maze);
-InitEntitiesPositon();

@@ -12,19 +12,15 @@ const keyCodes = {
 };
 
 var gameStarted = false;
-var umbreonCoords = {
-    x: 1,
-    y: 0
-};
-var operationInProgress = null;
-var tl = new TimelineMax();
+
+var umbreon_tl = null;
+var james_tl = null;
+var jessie_tl = null;
 
 var music = new Audio("../assets/sounds/main-music.mp3");
 music.volume = 0.01;
 music.loop = true;
 
-var collision = new Audio("../assets/sounds/collision.wav");
-collision.volume = 0.01;
 
 function MapResize() {
     const horizScrollBarHeight = 18;
@@ -47,19 +43,33 @@ function MapResize() {
     }
 }
 
-function GameEntitiesResize() {
-    var map = document.getElementById("map");
-    var umbreon = document.getElementById("umbreon");
-    umbreon.style.transform = 'translate(' + ((umbreonCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (umbreonCoords.y * (map.offsetHeight / height)) + 'px)';
-}
+function GameEntitiesPositioning() {
+    if (gameStarted) {
+        var map = document.getElementById("map");
+        var umbreon = document.getElementById("umbreon");
+        var james = document.getElementById("james");
+        var jessie = document.getElementById("jessie");
+        umbreon.style.visibility = 'visible';
+        james.style.visibility = 'visible';
+        jessie.style.visibility = 'visible';
+        umbreon.style.transform = 'translate(' + ((umbreonCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (umbreonCoords.y * (map.offsetHeight / height)) + 'px)';
+        james.style.transform = 'translate(' + ((jamesCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (jamesCoords.y * (map.offsetHeight / height)) + 'px)';
+        jessie.style.transform = 'translate(' + ((jessieCoords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (jessieCoords.y * (map.offsetHeight / height)) + 'px)';
 
-function ChangeUmbreonSprite(sprite) {
-    document.getElementById("umbreon").setAttribute('src', "../assets/images/umbreon/" + sprite + ".png")
+        if (james_tl) {
+            james_tl.kill();
+            james_tl = new TimelineMax();
+            StartJamesAnimation();
+        }
+        if (jessie_tl) {
+            jessie_tl.kill();
+            jessie_tl = new TimelineMax();
+            StartJessieAnimation();
+        }
+    }
 }
 
 function OnKeyPress(event) {
-    var map = document.getElementById("map");
-
     if (Object.values(keyCodes).includes(event.keyCode)) {
         event.preventDefault();
     }
@@ -72,83 +82,18 @@ function OnKeyPress(event) {
         if (event.keyCode == keyCodes["M"]) {
             music.muted = !music.muted;
         }
-        if (!tl.isActive()) {
+        if (!umbreon_tl.isActive()) {
             if (event.keyCode == keyCodes["Z"] || event.keyCode == keyCodes["ARROW_UP"]) {
-                ChangeUmbreonSprite("umbu1")
-                if (maze[umbreonCoords.y - 1][umbreonCoords.x] == WALL) {
-                    collision.play();
-                }
-                else {
-                    tl.to("#umbreon", {
-                        duration: 0.07,
-                        y:"-=" + (map.offsetWidth / width / 2)
-                    })
-                    .set("#umbreon", { attr: { src: "../assets/images/umbreon/umbu3.png" } })
-                    .to("#umbreon", {
-                        duration: 0.07,
-                        y:"-=" + (map.offsetWidth / width / 2)
-                    })
-                    umbreonCoords.y--;
-                }
-                ChangeUmbreonSprite("umbu2")
+                UmbreonGoUp()
             }
             if (event.keyCode == keyCodes["S"] || event.keyCode == keyCodes["ARROW_DOWN"]) {
-                ChangeUmbreonSprite("umbd1")
-                if (maze[umbreonCoords.y + 1][umbreonCoords.x] == WALL) {
-                    collision.play();
-                }
-                else {
-                    tl.to("#umbreon", {
-                        duration: 0.07,
-                        y:"+=" + (map.offsetWidth / width / 2)
-                    })
-                    .set("#umbreon", { attr: { src: "../assets/images/umbreon/umbd3.png" } })
-                    .to("#umbreon", {
-                        duration: 0.07,
-                        y:"+=" + (map.offsetWidth / width / 2)
-                    })
-                    umbreonCoords.y++;
-                }
-                ChangeUmbreonSprite("umbd2")
+                UmbreonGoDown();
             }
             if (event.keyCode == keyCodes["Q"] || event.keyCode == keyCodes["ARROW_LEFT"]) {
-                ChangeUmbreonSprite("umbl1")
-                tl.set("#umbreon", { attr: { src: "../assets/images/umbreon/umbl1.png" } })
-                if (maze[umbreonCoords.y][umbreonCoords.x - 1] == WALL) {
-                    collision.play();
-                }
-                else {
-                    tl.to("#umbreon", {
-                        duration: 0.07,
-                        x:"-=" + (map.offsetWidth / width / 2)
-                    })
-                    .set("#umbreon", { attr: { src: "../assets/images/umbreon/umbl3.png" } })
-                    .to("#umbreon", {
-                        duration: 0.07,
-                        x:"-=" + (map.offsetWidth / width / 2)
-                    })
-                    umbreonCoords.x--;
-                }
-                ChangeUmbreonSprite("umbl2")
+                UmbreonGoLeft();
             }
             if (event.keyCode == keyCodes["D"] || event.keyCode == keyCodes["ARROW_RIGHT"]) {
-                ChangeUmbreonSprite("umbr1")
-                if (maze[umbreonCoords.y][umbreonCoords.x + 1] == WALL) {
-                    collision.play();
-                }
-                else {
-                    tl.to("#umbreon", {
-                        duration: 0.07,
-                        x:"+=" + (map.offsetWidth / width / 2)
-                    })
-                    .set("#umbreon", { attr: { src: "../assets/images/umbreon/umbr3.png" } })
-                    .to("#umbreon", {
-                        duration: 0.07,
-                        x:"+=" + (map.offsetWidth / width / 2)
-                    })
-                    umbreonCoords.x++;
-                }
-                ChangeUmbreonSprite("umbr2")
+                UmbreonGoRight();
             }
         }
     }
@@ -156,34 +101,42 @@ function OnKeyPress(event) {
 
 function StartGame() {
     gameStarted = true;
-    music.play();
+    this.GameEntitiesPositioning();
+
+    umbreon_tl = new TimelineMax();
+    james_tl = new TimelineMax();
+    jessie_tl = new TimelineMax();
+
+    //music.play();
+    StartJamesAnimation();
+    StartJessieAnimation();
 
     //  animation James
-    gsap.to("#james", {
-        duration: 7,
-        motionPath: {
-        path: "#james_path",
-        align: "#james_path"
-        },
-        ease: Linear.easeNone,
-        repeat: -1,
-        yoyo: true,
-    });
+//     gsap.to("#james", {
+//         duration: 7,
+//         motionPath: {
+//         path: "#james_path",
+//         align: "#james_path"
+//         },
+//         ease: Linear.easeNone,
+//         repeat: -1,
+//         yoyo: true,
+//     });
     
-    //  animation James
-    gsap.to("#jessie", {
-        duration: 10,
-        motionPath: {
-        path: "#jessie_path",
-        align: "#jessie_path"
-        },
-        ease: Linear.easeNone,
-        repeat: -1,
-        yoyo: true,
-    });
+//     //  animation James
+//     gsap.to("#jessie", {
+//         duration: 10,
+//         motionPath: {
+//         path: "#jessie_path",
+//         align: "#jessie_path"
+//         },
+//         ease: Linear.easeNone,
+//         repeat: -1,
+//         yoyo: true,
+//     });
 }
 
 window.onresize = function(event) {
     this.MapResize();
-    this.GameEntitiesResize();
+    this.GameEntitiesPositioning();
 };
