@@ -11,21 +11,21 @@
   <!-- lien vers le style CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body onkeydown="appuiTouche(event)" >
+<body onkeydown="OnKeyPress(event)" >
 <!-- le contenu de votre site -->
 
 
 <section class='flex-5130'>
   <div id="gamefield" class="col-1">
     <div id="map">
-      <img id="umbreon" class="game-entity" src="../assets/images/umbreon/umbd1.png" alt="Umbreon">
-      <img id="james" src="../assets/images/james/jamd1.png" alt="James">
-      <img id="jessie" src="../assets/images/jessie/jesd1.png" alt="Jessie">
+      <img id="umbreon" src="../assets/images/umbreon/umbd2.png" alt="Umbreon">
+      <img id="james" src="../assets/images/james/jamd2.png" alt="James">
+      <img id="jessie" src="../assets/images/jessie/jesd2.png" alt="Jessie">
 
-      <svg class="path_james" width="339" height="194" viewBox="0 0 339 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="path_james" viewBox="0 0 339 194" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path id="james_path" d="M338.5 0V97H234.5V130.5H1V193H102"/>
       </svg>
-      <svg class="path_jessie" width="504" height="269" viewBox="0 0 504 269" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="path_jessie" viewBox="0 0 504 269" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path id="jessie_path" d="M469 269V202H503V71.5H368.5V1H0.5V129" />
       </svg>
 
@@ -35,7 +35,8 @@
   </div>
   <div class="col-2">
     <h1>La fuite de Noctali</h1>
-      <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve tes amis à l'exterieur. </br></br> A toi d'jouer ! </p>
+    <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve tes amis à l'exterieur. </br></br> A toi d'jouer ! </p>
+    <button onclick="StartGame()">JOUER</button>
   </div>
 </section>
 

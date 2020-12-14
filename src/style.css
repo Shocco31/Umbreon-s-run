@@ -75,13 +75,10 @@ p {
 }
 
 #james {
-
     width: 1.7%;
     position: absolute;
     transform: translate(-50%, -50%);
-
 }
-
 
 .path_james {
     position: absolute;    
@@ -90,7 +87,6 @@ p {
     left: 13%;
     height: 20%;
 }
-
 
 #jessie {
     width: 1.7%;
