@@ -1,6 +1,9 @@
 var collision = new Audio("../assets/sounds/collision.wav");
 collision.volume = 0.2;
 
+var fake_end = new Audio("../assets/sounds/fake_end.wav");
+fake_end.volume = 0.2;
+
 function ChangeUmbreonSprite(sprite) {
     document.getElementById("umbreon").setAttribute('src', "../assets/images/umbreon/" + sprite + ".png")
 }

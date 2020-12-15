@@ -120,16 +120,20 @@ function OnKeyPress(event) {
             if (event.keyCode == keyCodes["Z"] || event.keyCode == keyCodes["ARROW_UP"]) {
                 UmbreonGoUp()
             }
-            if (event.keyCode == keyCodes["S"] || event.keyCode == keyCodes["ARROW_DOWN"]) {
+            else if (event.keyCode == keyCodes["S"] || event.keyCode == keyCodes["ARROW_DOWN"]) {
                 UmbreonGoDown();
             }
-            if (event.keyCode == keyCodes["Q"] || event.keyCode == keyCodes["ARROW_LEFT"]) {
+            else if (event.keyCode == keyCodes["Q"] || event.keyCode == keyCodes["ARROW_LEFT"]) {
                 UmbreonGoLeft();
             }
-            if (event.keyCode == keyCodes["D"] || event.keyCode == keyCodes["ARROW_RIGHT"]) {
+            else if (event.keyCode == keyCodes["D"] || event.keyCode == keyCodes["ARROW_RIGHT"]) {
                 UmbreonGoRight();
             }
-            if (maze[umbreon_coords.y][umbreon_coords.x] == END) {
+            if (maze[umbreon_coords.y][umbreon_coords.x] == FAKE_END) {
+                fake_end.play();
+                RevealFakeEnd(umbreon_coords.x, umbreon_coords.y);
+            }
+            else if (maze[umbreon_coords.y][umbreon_coords.x] == END) {
                 victory();
             }
         }
@@ -145,12 +149,13 @@ function StartGame() {
     jessie_tl = new TimelineMax();
     sbire1_tl = new TimelineMax();
 
-    PlayMainMusic();
-    
     StartJamesAnimation();
     StartJessieAnimation();
     StartSbireAnimation(1, sbire1_tl, sbire1_coords);
     checkInterval = setInterval(checkEnnemies, 250)
+    
+    PlayMainMusic();
+    chronoStart()
 
     //  animation James
 //     gsap.to("#james", {
@@ -178,10 +183,11 @@ function StartGame() {
 }
 
 function EndGame() {
-    //james_tl.kill();
-    //jessie_tl.kill();
+    james_tl.kill();
+    jessie_tl.kill();
     sbire1_tl.kill();
     clearInterval(checkInterval);
+    chronoStart();
     gameStarted = false;
 }
 
