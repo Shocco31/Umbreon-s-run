@@ -14,12 +14,13 @@ function ChangeUmbreonSprite(sprite) {
 function UmbreonGoUp() {
     var map = document.getElementById("map");
 
-    ChangeUmbreonSprite("umbu1")
     if (maze[Umbreon.coords.y - 1][Umbreon.coords.x] == WALL || maze[Umbreon.coords.y - 1][Umbreon.coords.x] == LOCK) {
+        ChangeUmbreonSpriteManually("umbu1")
         collision.play();
     }
     else {
-        Umbreon.anim.to("#umbreon", {
+        Umbreon.anim.set("#umbreon", { attr: { src: "./assets/images/umbreon/umbu1.png" } })
+        .to("#umbreon", {
             duration: 0.085,
             y: (Umbreon.coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 2)
         })
@@ -36,12 +37,13 @@ function UmbreonGoUp() {
 function UmbreonGoDown() {
     var map = document.getElementById("map");
 
-    ChangeUmbreonSprite("umbd1")
     if (maze[Umbreon.coords.y + 1][Umbreon.coords.x] == WALL || maze[Umbreon.coords.y + 1][Umbreon.coords.x] == LOCK) {
+        ChangeUmbreonSpriteManually("umbd1")
         collision.play();
     }
     else {
-        Umbreon.anim.to("#umbreon", {
+        Umbreon.anim.set("#umbreon", { attr: { src: "./assets/images/umbreon/umbd1.png" } })
+        .to("#umbreon", {
             duration: 0.085,
             y: (Umbreon.coords.y + 1) * (map.offsetHeight / height) - (map.offsetHeight / height / 2)
         })
@@ -58,12 +60,13 @@ function UmbreonGoDown() {
 function UmbreonGoLeft() {
     var map = document.getElementById("map");
 
-    ChangeUmbreonSprite("umbl1")
     if (maze[Umbreon.coords.y][Umbreon.coords.x - 1] == WALL || maze[Umbreon.coords.y][Umbreon.coords.x - 1] == LOCK) {
+        ChangeUmbreonSpriteManually("umbl1")
         collision.play();
     }
     else {
-        Umbreon.anim.to("#umbreon", {
+        Umbreon.anim.set("#umbreon", { attr: { src: "./assets/images/umbreon/umbl1.png" } })
+        .to("#umbreon", {
             duration: 0.085,
             x: (Umbreon.coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 2)
         })
@@ -80,12 +83,13 @@ function UmbreonGoLeft() {
 function UmbreonGoRight() {
     var map = document.getElementById("map");
 
-    ChangeUmbreonSprite("umbr1")
     if (maze[Umbreon.coords.y][Umbreon.coords.x + 1] == WALL || maze[Umbreon.coords.y][Umbreon.coords.x + 1] == LOCK) {
+        ChangeUmbreonSpriteManually("umbr1")
         collision.play();
     }
     else {
-        Umbreon.anim.to("#umbreon", {
+        Umbreon.anim.set("#umbreon", { attr: { src: "./assets/images/umbreon/umbr1.png" } })
+        .to("#umbreon", {
             duration: 0.085,
             x: (Umbreon.coords.x + 1) * (map.offsetWidth / width) - (map.offsetWidth / width / 2)
         })
