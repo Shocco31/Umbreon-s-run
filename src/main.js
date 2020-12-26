@@ -1,4 +1,4 @@
-// CONSTANTES
+// CONSTANTS
 const keyCodes = {
     "SPACE": 32,
     "ARROW_UP": 38,
@@ -14,109 +14,131 @@ const keyCodes = {
 
 // VARIABLES
 var gameStarted = false;
+var gameEnded = false;
 var checkInterval = null;
 
-var umbreon_tl = null;
-var james_tl = null;
-var jessie_tl = null;
-var sbire1_tl = null;
-
-var umbreon_coords = {
-    x: 1,
-    y: 0
+var Umbreon = {
+    anim: null,
+    coords: {
+        x: 1,
+        y: 0
+    },
 };
 
-var james_coords = {
-    x: 10,
-    y: 16
+var James = {
+    anim: null,
+    coords: {
+        x: 25,
+        y: 20
+    },
+    path: "LLLLLLLLLUUUUUUULLLDLLLLLLDDRDDUULUURRRRRRURRRDDDDDDDRRRRRRRRR"
 };
 
-var jessie_coords = {
-    x: 17,
-    y: 6
+var Jessie = {
+    anim: null,
+    coords: {
+        x: 18,
+        y: 2
+    },
+    path: "RRRRRRRRRRDDRRRRURRRRRRDDLRUULLLLLDDDDDLUUULLLLUUULLLLLLLLLL"
 };
 
-var sbire1_coords = {
-    x: 1,
-    y: 5
+var Sbire1 = {
+    anim: null,
+    coords: {
+        x: 5,
+        y: 11
+    },
+    path: "RRRRRRRRUUUUUUUUULLLLLLDDDLLLLLLDDDUUURRRRRRUUURRRRRRDDDDDDDDDLLLLLLLL",
+    number: 1
 };
 
+var Sbire2 = {
+    anim: null,
+    coords: {
+        x: 37,
+        y: 16
+    },
+    path: "UUUULLLUULLLLDDDDDDDLLLLLLLUUUUUURDDDDDRDRRRRRUURRRRRULLLLLUUUURRRRDDRRRDDDD",
+    number: 2
+}
+
+// When we change the size of the screen
 window.onresize = function() {
-    this.MapResize();
+    MapResize();
     this.GameEntitiesPositioning();
 };
 
-// RESPONSIVE
-function MapResize() {
-    const horizScrollBarHeight = 18;
-    var map = document.getElementById("map");
-    var mapWidth = map.offsetWidth;
-    var mapHeight = map.offsetHeight;
-    var windowHeight = window.innerHeight - horizScrollBarHeight;
-    if (mapHeight > windowHeight) {
-        map.style.width = (windowHeight * (width / height)) + "px";
-    }
-    var gamefield = document.getElementById("gamefield");
-    if (mapHeight < window.innerHeight - horizScrollBarHeight && (mapWidth + 1) < gamefield.offsetWidth) {
-        let newMapWidth = (mapWidth + (gamefield.offsetHeight - mapHeight));
-        if (newMapWidth < gamefield.offsetWidth) {
-            map.style.width = newMapWidth + "px";
-        }
-        else {
-            map.style.width = '100%';
-        }
-    }
-}
-
 function GameEntitiesPositioning() {
-    if (gameStarted) {
+    if (gameStarted && !gameEnded) {
+        // Get of the map, the player, and the enemies
         var map = document.getElementById("map");
         var umbreon = document.getElementById("umbreon");
         var james = document.getElementById("james");
         var jessie = document.getElementById("jessie");
         var sbire1 = document.getElementById("sbire1");
+        var sbire2 = document.getElementById("sbire2");
+
+        // Put them visible
         umbreon.style.visibility = 'visible';
         james.style.visibility = 'visible';
         jessie.style.visibility = 'visible';
         sbire1.style.visibility = 'visible';
-        umbreon.style.transform = 'translate(' + ((umbreon_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (umbreon_coords.y * (map.offsetHeight / height)) + 'px)';
-        james.style.transform = 'translate(' + ((james_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (james_coords.y * (map.offsetHeight / height)) + 'px)';
-        jessie.style.transform = 'translate(' + ((jessie_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (jessie_coords.y * (map.offsetHeight / height)) + 'px)';
-        sbire1.style.transform = 'translate(' + ((sbire1_coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (sbire1_coords.y * (map.offsetHeight / height)) + 'px)';
+        sbire2.style.visibility = 'visible';
 
-        if (james_tl) {
-            james_tl.kill();
-            james_tl = new TimelineMax();
-            StartJamesAnimation();
+        // Put them at the good place, responsively
+        umbreon.style.transform = 'translate(' + ((Umbreon.coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (Umbreon.coords.y * (map.offsetHeight / height)) + 'px)';
+        james.style.transform = 'translate(' + ((James.coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (James.coords.y * (map.offsetHeight / height)) + 'px)';
+        jessie.style.transform = 'translate(' + ((Jessie.coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (Jessie.coords.y * (map.offsetHeight / height)) + 'px)';
+        sbire1.style.transform = 'translate(' + ((Sbire1.coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (Sbire1.coords.y * (map.offsetHeight / height)) + 'px)';
+        sbire2.style.transform = 'translate(' + ((Sbire2.coords.x * (map.offsetWidth / width) + (map.offsetWidth / width / 10))) + 'px, ' + (Sbire2.coords.y * (map.offsetHeight / height)) + 'px)';
+
+        // Restarting james' animation
+        if (James.anim) {
+            James.anim.kill();
+            console.log(James.anim)
+            James.anim = new TimelineMax();
+            StartJamesAnimation(James);
         }
-        if (jessie_tl) {
-            jessie_tl.kill();
-            jessie_tl = new TimelineMax();
-            StartJessieAnimation();
+        // Restarting jessie's animation
+        if (Jessie.anim) {
+            Jessie.anim.kill();
+            Jessie.anim = new TimelineMax();
+            StartJessieAnimation(Jessie);
         }
-        if (sbire1_tl) {
-            sbire1_tl.kill();
-            sbire1_tl = new TimelineMax();
-            StartSbireAnimation(1, sbire1_tl, sbire1_coords);
+        // Restarting sbire's animation
+        if (Sbire1.anim) {
+            Sbire1.anim.kill();
+            Sbire1.anim = new TimelineMax();
+            StartSbireAnimation(Sbire1);
+        }
+        // Restarting 'sbire with path' animation
+        if (Sbire2.anim) {
+            Sbire2.anim.kill();
+            Sbire2.anim = new TimelineMax();
+            StartSbireAnimation(Sbire2);
         }
     }
 }
 
-// START GAME
 function OnKeyPress(event) {
+    // Cancel of the normal behaviour of each key that we use
     if (Object.values(keyCodes).includes(event.keyCode)) {
         event.preventDefault();
     }
+
+    // From here, each action related to the keystroke
     if (event.keyCode == keyCodes["SPACE"]) {
-        if (gameStarted != true) {
+        if (gameStarted == false && gameEnded == false) {
             StartGame();
         }
     }
-    if (gameStarted == true) {
-        if (event.keyCode == keyCodes["M"]) {
-            MuteMusic();
-        }
-        if (!umbreon_tl.isActive()) {
+    if (event.keyCode == keyCodes["M"]) {
+        MuteMusic();
+    }
+    if (gameStarted == true && gameEnded == false) {
+
+        if (!Umbreon.anim.isActive()) {
             if (event.keyCode == keyCodes["Z"] || event.keyCode == keyCodes["ARROW_UP"]) {
                 UmbreonGoUp()
             }
@@ -129,105 +151,87 @@ function OnKeyPress(event) {
             else if (event.keyCode == keyCodes["D"] || event.keyCode == keyCodes["ARROW_RIGHT"]) {
                 UmbreonGoRight();
             }
-            if (maze[umbreon_coords.y][umbreon_coords.x] == FAKE_END) {
-                fake_end.play();
-                RevealFakeEnd(umbreon_coords.x, umbreon_coords.y);
+            if (maze[Umbreon.coords.y][Umbreon.coords.x] == WRONG_BUTTON) {
+                wrong_button.play();
+                RevealWrongButton(Umbreon.coords.x, Umbreon.coords.y);
             }
-            else if (maze[umbreon_coords.y][umbreon_coords.x] == END) {
-                victory();
+            else if (maze[Umbreon.coords.y][Umbreon.coords.x] == GOOD_BUTTON) {
+                good_button.play();
+                RevealGoodButton(Umbreon.coords.x, Umbreon.coords.y);
+            }
+            else if (maze[Umbreon.coords.y][Umbreon.coords.x] == END) {
+                Victory();
             }
         }
     }
 }
 
 function StartGame() {
+    // For now, if we start again the game, we need to reload the page
+    if (gameEnded == true) {
+        document.location.reload();
+    }
+
     gameStarted = true;
+
+    // Init player position
+    Umbreon.coords = {
+        x: 1,
+        y: 0
+    };
+
+    // Init characters sprites and positions
     this.GameEntitiesPositioning();
-
-    umbreon_tl = new TimelineMax();
-    james_tl = new TimelineMax();
-    jessie_tl = new TimelineMax();
-    sbire1_tl = new TimelineMax();
-
-    StartJamesAnimation();
-    StartJessieAnimation();
-    StartSbireAnimation(1, sbire1_tl, sbire1_coords);
-    checkInterval = setInterval(checkEnnemies, 250)
     
+    // Init animations
+    Umbreon.anim = new TimelineMax();
+    James.anim = new TimelineMax();
+    Jessie.anim = new TimelineMax();
+    Sbire1.anim = new TimelineMax();
+    Sbire2.anim = new TimelineMax();
+    
+    // Start animations
+    StartJamesAnimation(James);
+    StartJessieAnimation(Jessie);
+    StartSbireAnimation(Sbire1);
+    StartSbireAnimation(Sbire2);
+
+    // Start collision checking
+    checkInterval = setInterval(CheckEnnemies, 250)
+    
+    // Start music
     PlayMainMusic();
-    chronoStart()
 
-    //  animation James
-//     gsap.to("#james", {
-//         duration: 7,
-//         motionPath: {
-//         path: "#james_path",
-//         align: "#james_path"
-//         },
-//         ease: Linear.easeNone,
-//         repeat: -1,
-//         yoyo: true,
-//     });
-    
-//     //  animation James
-//     gsap.to("#jessie", {
-//         duration: 10,
-//         motionPath: {
-//         path: "#jessie_path",
-//         align: "#jessie_path"
-//         },
-//         ease: Linear.easeNone,
-//         repeat: -1,
-//         yoyo: true,
-//     });
+    // Start chrono
+    StartChrono();
 }
 
 function EndGame() {
-    james_tl.kill();
-    jessie_tl.kill();
-    sbire1_tl.kill();
+    // Stop animations
+    James.anim.kill();
+    Jessie.anim.kill();
+    Sbire1.anim.kill();
+    Sbire2.anim.kill();
+
+    // Stop collision checking
     clearInterval(checkInterval);
-    chronoStart();
-    gameStarted = false;
+
+    // Stop chrono
+    StopChrono();
+
+    gameEnded = true;
 }
 
 // GAMEOVER
-function gameOver() {
+function GameOver() {
+    // We stop the game and start the gameover music
     EndGame();
     PlayDefeatMusic();
-    console.log("game over")
 }
 
 // VICTORY
-function victory() {
+function Victory() {
+    // We stop the game and start the victory music
     EndGame();
     PlayWinMusic();
-    console.log("victory")
 }
-
-// COLLISIONS
-function checkCollision(div1, div2) {
-    // la sensibilité : à ajuster si besoin
-    let threshold = -5;
-    let rect1 = div1.getBoundingClientRect();
-    let rect2 = div2.getBoundingClientRect();
-    return !(
-      rect1.right < rect2.left + threshold ||
-      rect1.left > rect2.right - threshold ||
-      rect1.bottom < rect2.top + threshold ||
-      rect1.top > rect2.bottom - threshold
-    );
-  }
-
-function checkEnnemies() {
-	// on récupère tous les ennemis : 
-    let all_ennemies = document.querySelectorAll(".ennemy");
-    let player = document.querySelector(".player");
-	// on regarde s'il y a une collision
-	all_ennemies.forEach(function(element) {
-	    if (checkCollision(player, element)) {
-	        gameOver()
-	    } 
-	})
-}
-  

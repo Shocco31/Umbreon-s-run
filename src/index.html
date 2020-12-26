@@ -1,100 +1,91 @@
 <!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-  <!-- utile pour le responsive -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- utile pour le responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Umbreon's Run</title>
+    <title>Umbreon's Run</title>
 
-  <!-- lien vers le style CSS -->
+    <!-- lien vers le style CSS -->
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body onkeydown="OnKeyPress(event)">
-<!-- le contenu de votre site -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body onkeydown="OnKeyPress(event)">
+    <!-- le contenu de votre site -->
 
+    <section class='flex-5130'>
+      <div id="gamefield" class="col-1">
+        <div id="map">
+          <img id="umbreon" class="player" src="../assets/images/umbreon/umbd2.png" alt="Umbreon">
+          <img id="james" class="ennemy" src="../assets/images/james/jamd2.png" alt="James">
+          <img id="jessie" class="ennemy" src="../assets/images/jessie/jesd2.png" alt="Jessie">
+          <img id="sbire1" class="ennemy" src="../assets/images/sbire/sbid2.png" alt="Sbire">
+          <img id="sbire2" class="ennemy" src="../assets/images/sbire/sbid2.png" alt="Sbire">
+        </div>
+      </div>
+      <div class="col-2">
+        <h1>La fuite de Noctali</h1>
+        <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve tes amis à l'exterieur. </br></br> A toi d'jouer ! </p>
+        <button onclick="StartGame()">JOUER</button>
+        <div id="chrono"></div>
+        <button id="myBtn">Open Modal</button>
+      </div>
+    </section>
 
-<section class='flex-5130'>
-  <div id="gamefield" class="col-1">
-    <div id="map">
-      <img id="umbreon" class="player" src="../assets/images/umbreon/umbd2.png" alt="Umbreon">
-      <img id="james" class="ennemy" src="../assets/images/james/jamd2.png" alt="James">
-      <img id="jessie" class="ennemy" src="../assets/images/jessie/jesd2.png" alt="Jessie">
-      <img id="sbire1" class="ennemy" src="../assets/images/sbire/sbid1.png" alt="Sbire">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-      <!--  
-      <svg class="path_jessie" viewBox="0 0 504 269" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="jessie_path" d="M469 269V202H503V71.5H368.5V1H0.5V129" />
-      </svg> -->
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
 
     </div>
-    <div id="blank-space">
-    </div>
-  </div>
-  <div class="col-2">
-    <h1>La fuite de Noctali</h1>
-    <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve tes amis à l'exterieur. </br></br> A toi d'jouer ! </p>
-    <button onclick="StartGame()">JOUER</button>
-    <div id="chrono"></div>
-    <button id="myBtn">Open Modal</button>
-  </div>
-</section>
 
-<!-- Trigger/Open The Modal -->
+    <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-</div>
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    <!-- les scripts JavaScript -->
+    <!-- à la fin pour être sûr que le HTML a bien chargé -->
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-<!-- les scripts JavaScript -->
-<!-- à la fin pour être sûr que le HTML a bien chargé -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/MotionPathPlugin.min.js"></script>
-<script src="./tools/maze-builder.js"></script>
-<script src="./tools/chronometer.js"></script>
-<script src="./music.js"></script>
-<script src="./enemies/jessie.js"></script>
-<script src="./enemies/james.js"></script>
-<script src="./enemies/sbire.js"></script>
-<script src="./umbreon.js"></script>
-<script src="./main.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/MotionPathPlugin.min.js"></script>
+    <script src="./js/enemies/jessie.js"></script>
+    <script src="./js/enemies/james.js"></script>
+    <script src="./js/enemies/sbire.js"></script>
+    <script src="./js/maze.js"></script>
+    <script src="./js/chronometer.js"></script>
+    <script src="./js/collision.js"></script>
+    <script src="./js/music.js"></script>
+    <script src="./js/umbreon.js"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>
