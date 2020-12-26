@@ -42,11 +42,11 @@ const LOCK = 6;
 function RevealGoodButton(x, y) {
     // Put a green square on the floor
     var tile = document.getElementById('tile' + x + '-' + y)
-    tile.setAttribute('src', '../assets/images/floor-good-button.png')
+    tile.setAttribute('src', './assets/images/floor-good-button.png')
 
     // Remove the wall blocking the exit
     var wall_to_remove = document.getElementById('tile38-23')
-    wall_to_remove.setAttribute('src', '../assets/images/floor-with-wall.png')
+    wall_to_remove.setAttribute('src', './assets/images/floor-with-wall.png')
     maze[23][38] = FLOOR;
 
     // Set the green button a normal floor to not repeat the noise
@@ -57,7 +57,7 @@ function RevealGoodButton(x, y) {
 function RevealWrongButton(x, y) {
     // Put a red square on the floor
     var tile = document.getElementById('tile' + x + '-' + y)
-    tile.setAttribute('src', '../assets/images/floor-wrong-button.png')
+    tile.setAttribute('src', './assets/images/floor-wrong-button.png')
 
     // Set the red button a normal floor to not repeat the noise
     maze[Umbreon.coords.y][Umbreon.coords.x] = FLOOR;
@@ -114,7 +114,7 @@ function CreateTile(x, y, type) {
     // Creation of a tile
     var newImage = document.createElement("img");
     newImage.setAttribute('id', 'tile' + x + '-' + y)
-    newImage.setAttribute('src', '../assets/images/' + type + '.png');
+    newImage.setAttribute('src', './assets/images/' + type + '.png');
     newImage.setAttribute('class', 'sprite');
     newImage.style.width = (100 / width) + "%";
     newImage.style.maxWidth = tileMaxSize;

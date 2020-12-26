@@ -32,7 +32,7 @@ var James = {
         y: 20
     },
     path: "LLLLLLLLLUUUUUUULLLDLLLLLLDDRDDUULUURRRRRRURRRDDDDDDDRRRRRRRRR",
-    imgSrc: "../assets/images/james/jamend.png",
+    imgSrc: "./assets/images/james/jamend.png",
     sentence: "Rendez-vous tous ou ce sera la guerre."
 };
 
@@ -43,7 +43,7 @@ var Jessie = {
         y: 2
     },
     path: "RRRRRRRRRRDDRRRRURRRRRRDDLRUULLLLLDDDDDLUUULLLLUUULLLLLLLLLL",
-    imgSrc: "../assets/images/jessie/jesend.png",
+    imgSrc: "./assets/images/jessie/jesend.png",
     sentence: "La Team Rocket, plus rapide que la lumière."
 };
 
@@ -54,7 +54,7 @@ var Sbire1 = {
         y: 11
     },
     path: "RRRRRRRRUUUUUUUUULLLLLLDDDLLLLLLDDDUUURRRRRRUUURRRRRRDDDDDDDDDLLLLLLLL",
-    imgSrc: "../assets/images/sbire/sbiend.png",
+    imgSrc: "./assets/images/sbire/sbiend.png",
     sentence: "Halte là !",
     number: 1
 };
@@ -66,7 +66,7 @@ var Sbire2 = {
         y: 16
     },
     path: "UUUULLLUULLLLDDDDDDDLLLLLLLUUUUUURDDDDDRDRRRRRUURRRRRULLLLLUUUURRRRDDRRRDDDD",
-    imgSrc: "../assets/images/sbire/sbiend.png",
+    imgSrc: "./assets/images/sbire/sbiend.png",
     sentence: "Halte là !",
     number: 2
 }
@@ -251,6 +251,6 @@ function Victory() {
     EndGame();
     PlayWinMusic();
     document.getElementById("modal-title").innerText = "Félicitations, vous avez retrouvé votre dresseur Pokémon."
-    document.getElementById("modal-img").src = "../assets/images/red/redend2.png"
+    document.getElementById("modal-img").src = "./assets/images/red/redend2.png"
 
 }

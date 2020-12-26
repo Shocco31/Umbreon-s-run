@@ -1,60 +1,60 @@
 function SbireGoLeft(sbire, tag) {
     var map = document.getElementById("map");
 
-    sbire.anim.set(tag, { attr: { src: "../assets/images/sbire/sbil1.png" } })
+    sbire.anim.set(tag, { attr: { src: "./assets/images/sbire/sbil1.png" } })
     .to(tag, {
         x: (sbire.coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 2)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbil3.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbil3.png" } })
     .to(tag, {
         x: (sbire.coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbil2.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbil2.png" } })
     sbire.coords.x--;
 }
 
 function SbireGoRight(sbire, tag) {
     var map = document.getElementById("map");
 
-    sbire.anim.set(tag, { attr: { src: "../assets/images/sbire/sbir1.png" } })
+    sbire.anim.set(tag, { attr: { src: "./assets/images/sbire/sbir1.png" } })
     .to(tag, {
         x: (sbire.coords.x + 1) * (map.offsetWidth / width) - (map.offsetWidth / width / 2)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbir3.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbir3.png" } })
     .to(tag, {
         x: (sbire.coords.x + 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbir2.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbir2.png" } })
     sbire.coords.x++;
 }
 
 function SbireGoUp(sbire, tag) {
     var map = document.getElementById("map");
 
-    sbire.anim.set(tag, { attr: { src: "../assets/images/sbire/sbiu1.png" } })
+    sbire.anim.set(tag, { attr: { src: "./assets/images/sbire/sbiu1.png" } })
     .to(tag, {
         y: (sbire.coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 2)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbiu3.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbiu3.png" } })
     .to(tag, {
         y: (sbire.coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbiu2.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbiu2.png" } })
     sbire.coords.y--;
 }
 
 function SbireGoDown(sbire, tag) {
     var map = document.getElementById("map");
 
-    sbire.anim.set(tag, { attr: { src: "../assets/images/sbire/sbid1.png" } })
+    sbire.anim.set(tag, { attr: { src: "./assets/images/sbire/sbid1.png" } })
     .to(tag, {
         y: (sbire.coords.y + 1) * (map.offsetHeight / height) - (map.offsetHeight / height / 2)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbid3.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbid3.png" } })
     .to(tag, {
         y: (sbire.coords.y + 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
     })
-    .set(tag, { attr: { src: "../assets/images/sbire/sbid2.png" } })
+    .set(tag, { attr: { src: "./assets/images/sbire/sbid2.png" } })
     sbire.coords.y++;
 }
 

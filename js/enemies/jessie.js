@@ -1,56 +1,56 @@
 function jessieGoLeft(jessie) {
     var map = document.getElementById("map");
-    jessie.anim.set("#jessie", { attr: { src: "../assets/images/jessie/jesl1.png" } })
+    jessie.anim.set("#jessie", { attr: { src: "./assets/images/jessie/jesl1.png" } })
     .to("#jessie", {
         x: (jessie.coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 2)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesl3.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesl3.png" } })
     .to("#jessie", {
         x: (jessie.coords.x - 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesl2.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesl2.png" } })
     jessie.coords.x--;
 }
 
 function jessieGoRight(jessie) {
     var map = document.getElementById("map");
-    jessie.anim.set("#jessie", { attr: { src: "../assets/images/jessie/jesr1.png" } })
+    jessie.anim.set("#jessie", { attr: { src: "./assets/images/jessie/jesr1.png" } })
     .to("#jessie", {
         x: (jessie.coords.x + 1) * (map.offsetWidth / width) - (map.offsetWidth / width / 2)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesr3.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesr3.png" } })
     .to("#jessie", {
         x: (jessie.coords.x + 1) * (map.offsetWidth / width) + (map.offsetWidth / width / 10)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesr2.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesr2.png" } })
     jessie.coords.x++;
 }
 
 function jessieGoUp(jessie) {
     var map = document.getElementById("map");
-    jessie.anim.set("#jessie", { attr: { src: "../assets/images/jessie/jesu1.png" } })
+    jessie.anim.set("#jessie", { attr: { src: "./assets/images/jessie/jesu1.png" } })
     .to("#jessie", {
         y: (jessie.coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 2)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesu3.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesu3.png" } })
     .to("#jessie", {
         y: (jessie.coords.y - 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesu2.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesu2.png" } })
     jessie.coords.y--;
 }
 
 function jessieGoDown(jessie) {
     var map = document.getElementById("map");
-    jessie.anim.set("#jessie", { attr: { src: "../assets/images/jessie/jesd1.png" } })
+    jessie.anim.set("#jessie", { attr: { src: "./assets/images/jessie/jesd1.png" } })
     .to("#jessie", {
         y: (jessie.coords.y + 1) * (map.offsetHeight / height) - (map.offsetHeight / height / 2)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesd3.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesd3.png" } })
     .to("#jessie", {
         y: (jessie.coords.y + 1) * (map.offsetHeight / height) + (map.offsetHeight / height / 10)
     })
-    .set("#jessie", { attr: { src: "../assets/images/jessie/jesd2.png" } })
+    .set("#jessie", { attr: { src: "./assets/images/jessie/jesd2.png" } })
     jessie.coords.y++;
 }
 

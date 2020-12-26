@@ -1,19 +1,19 @@
 // Array of musics
 const musics = [
-    "../assets/sounds/main_music1.mp3",
-    "../assets/sounds/main_music2.mp3",
-    "../assets/sounds/main_music3.mp3",
-    "../assets/sounds/main_music4.mp3"
+    "./assets/sounds/main_music1.mp3",
+    "./assets/sounds/main_music2.mp3",
+    "./assets/sounds/main_music3.mp3",
+    "./assets/sounds/main_music4.mp3"
 ]
 
 var main_music = new Audio();
 main_music.volume = 0.1;
 main_music.loop = true;
 
-var win_music = new Audio("../assets/sounds/win.mp3");
+var win_music = new Audio("./assets/sounds/win.mp3");
 win_music.volume = 0.1;
 
-var defeat_music = new Audio("../assets/sounds/defeat.mp3");
+var defeat_music = new Audio("./assets/sounds/defeat.mp3");
 defeat_music.volume = 0.1;
 
 // Play the music of the game
