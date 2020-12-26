@@ -104,7 +104,6 @@ function GameEntitiesPositioning() {
         // Restarting james' animation
         if (James.anim) {
             James.anim.kill();
-            console.log(James.anim)
             James.anim = new TimelineMax();
             StartJamesAnimation(James);
         }
@@ -181,6 +180,7 @@ function StartGame() {
     }
 
     gameStarted = true;
+    console.log("Game started");
 
     // Init player position
     Umbreon.coords = {
