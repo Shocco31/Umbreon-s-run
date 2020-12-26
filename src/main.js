@@ -31,7 +31,9 @@ var James = {
         x: 25,
         y: 20
     },
-    path: "LLLLLLLLLUUUUUUULLLDLLLLLLDDRDDUULUURRRRRRURRRDDDDDDDRRRRRRRRR"
+    path: "LLLLLLLLLUUUUUUULLLDLLLLLLDDRDDUULUURRRRRRURRRDDDDDDDRRRRRRRRR",
+    imgSrc: "../assets/images/james/jamend.png",
+    sentence: "Rendez-vous tous ou ce sera la guerre."
 };
 
 var Jessie = {
@@ -40,7 +42,9 @@ var Jessie = {
         x: 18,
         y: 2
     },
-    path: "RRRRRRRRRRDDRRRRURRRRRRDDLRUULLLLLDDDDDLUUULLLLUUULLLLLLLLLL"
+    path: "RRRRRRRRRRDDRRRRURRRRRRDDLRUULLLLLDDDDDLUUULLLLUUULLLLLLLLLL",
+    imgSrc: "../assets/images/jessie/jesend.png",
+    sentence: "La Team Rocket, plus rapide que la lumière."
 };
 
 var Sbire1 = {
@@ -50,6 +54,8 @@ var Sbire1 = {
         y: 11
     },
     path: "RRRRRRRRUUUUUUUUULLLLLLDDDLLLLLLDDDUUURRRRRRUUURRRRRRDDDDDDDDDLLLLLLLL",
+    imgSrc: "../assets/images/sbire/sbiend.png",
+    sentence: "Halte là !",
     number: 1
 };
 
@@ -60,6 +66,8 @@ var Sbire2 = {
         y: 16
     },
     path: "UUUULLLUULLLLDDDDDDDLLLLLLLUUUUUURDDDDDRDRRRRRUURRRRRULLLLLUUUURRRRDDRRRDDDD",
+    imgSrc: "../assets/images/sbire/sbiend.png",
+    sentence: "Halte là !",
     number: 2
 }
 
@@ -219,14 +227,22 @@ function EndGame() {
     // Stop chrono
     StopChrono();
 
+    // Defeat Screen
+    document.getElementById("myModal").style.display = "block";
+
+    // Win screen
+
     gameEnded = true;
 }
 
 // GAMEOVER
-function GameOver() {
+function GameOver(catcher) {
     // We stop the game and start the gameover music
     EndGame();
     PlayDefeatMusic();
+    document.getElementById("modal-title").innerText = catcher.sentence;
+    document.getElementById("modal-img").src = catcher.imgSrc;
+
 }
 
 // VICTORY
@@ -234,4 +250,7 @@ function Victory() {
     // We stop the game and start the victory music
     EndGame();
     PlayWinMusic();
+    document.getElementById("modal-title").innerText = "Félicitations, vous avez retrouvé votre dresseur Pokémon."
+    document.getElementById("modal-img").src = "../assets/images/red/redend2.png"
+
 }

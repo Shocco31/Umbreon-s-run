@@ -27,10 +27,8 @@
       </div>
       <div class="col-2">
         <h1>La fuite de Noctali</h1>
-        <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve tes amis à l'exterieur. </br></br> A toi d'jouer ! </p>
-        <button onclick="StartGame()">JOUER</button>
+        <p>Cher Noctali, </br></br>Tu as été capturé. Ta mission sera de t'échapper de la base secrète de la Team Rocket. Fais attention à ne pas te faire repérer.</br>Retrouve ton dresseur à l'exterieur. Trouve le bon bouton pour débloquer la sortie. Attention, un seul permet d'ouvrir la sortie, les autres sont des pièges. </br> Appuye sur Espace pour commencer à jouer. Et sur F5 pour recommencer. </br></br> A toi d'jouer ! </p>
         <div id="chrono"></div>
-        <button id="myBtn">Open Modal</button>
       </div>
     </section>
 
@@ -38,9 +36,12 @@
     <div id="myModal" class="modal">
 
       <!-- Modal content -->
-      <div class="modal-content">
+      <div class="modal-container">
         <span class="close">&times;</span>
-        <p>Some text in the Modal..</p>
+        <div class="modal-content">
+          <h2 id="modal-title"></h2>
+          <img id="modal-img" src="" alt="">
+        </div>
       </div>
 
     </div>
@@ -49,16 +50,9 @@
     // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {

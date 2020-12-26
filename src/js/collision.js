@@ -19,9 +19,19 @@ function CheckEnnemies() {
     let player = document.querySelector(".player");
 
 	// Collision checking for each ennemy, with the player
-	all_ennemies.forEach(function(element) {
-	    if (CheckCollision(player, element)) {
-	        GameOver()
+	all_ennemies.forEach(function(ennemy) {
+	    if (CheckCollision(player, ennemy)) {
+          switch (ennemy.id)
+          {
+            case "james": 
+              GameOver(James);
+              break;
+            case "jessie": 
+              GameOver(Jessie)
+              break;
+            default: 
+              GameOver(Sbire1)
+          }
 	    } 
 	})
 }
