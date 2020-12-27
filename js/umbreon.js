@@ -7,7 +7,7 @@ good_button.volume = 0.2;
 var wrong_button = new Audio("./assets/sounds/wrong_button.wav");
 wrong_button.volume = 0.2;
 
-function ChangeUmbreonSprite(sprite) {
+function ChangeUmbreonSpriteManually(sprite) {
     document.getElementById("umbreon").setAttribute('src', "./assets/images/umbreon/" + sprite + ".png")
 }
 

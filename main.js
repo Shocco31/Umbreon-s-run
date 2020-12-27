@@ -104,25 +104,25 @@ function GameEntitiesPositioning() {
         // Restarting james' animation
         if (James.anim) {
             James.anim.kill();
-            James.anim = new TimelineMax();
+            James.anim = new TimelineLite();
             StartJamesAnimation(James);
         }
         // Restarting jessie's animation
         if (Jessie.anim) {
             Jessie.anim.kill();
-            Jessie.anim = new TimelineMax();
+            Jessie.anim = new TimelineLite();
             StartJessieAnimation(Jessie);
         }
         // Restarting sbire's animation
         if (Sbire1.anim) {
             Sbire1.anim.kill();
-            Sbire1.anim = new TimelineMax();
+            Sbire1.anim = new TimelineLite();
             StartSbireAnimation(Sbire1);
         }
         // Restarting 'sbire with path' animation
         if (Sbire2.anim) {
             Sbire2.anim.kill();
-            Sbire2.anim = new TimelineMax();
+            Sbire2.anim = new TimelineLite();
             StartSbireAnimation(Sbire2);
         }
     }
@@ -133,7 +133,6 @@ function OnKeyPress(event) {
     if (Object.values(keyCodes).includes(event.keyCode)) {
         event.preventDefault();
     }
-
     // From here, each action related to the keystroke
     if (event.keyCode == keyCodes["SPACE"]) {
         if (gameStarted == false && gameEnded == false) {
@@ -192,11 +191,11 @@ function StartGame() {
     this.GameEntitiesPositioning();
     
     // Init animations
-    Umbreon.anim = new TimelineMax();
-    James.anim = new TimelineMax();
-    Jessie.anim = new TimelineMax();
-    Sbire1.anim = new TimelineMax();
-    Sbire2.anim = new TimelineMax();
+    Umbreon.anim = new TimelineLite();
+    James.anim = new TimelineLite();
+    Jessie.anim = new TimelineLite();
+    Sbire1.anim = new TimelineLite();
+    Sbire2.anim = new TimelineLite();
     
     // Start animations
     StartJamesAnimation(James);
